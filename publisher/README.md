@@ -11,3 +11,22 @@ This URL is used by both the publisher and the subscriber to **connect to the sa
 ## RabbitMQ Running Screenshot
 
 ![RabbitMQ Running](media/rabbitmq_screenshot.png)
+
+## Sending and Processing Event
+
+After setting up both the subscriber and the publisher, I ran them using two separate terminal windows.
+
+1. In the first terminal, I navigated to the `subscriber` directory and ran `cago run`
+This started the subscriber and connected it to the RabbitMQ message broker. On the RabbitMQ web interface (usually available at http://localhost:15672), I could see one active connection and one queue named `user_created`.
+
+2. In the second terminal, I navigated to the `publisher` directory and ran `cargo run`
+The publisher immediately sent five events to the `user_created` queue on RabbitMQ. These events contained user creation data such as user ID and name.
+
+3. The subscriber, already listening to the queue, instantly received and processed all five events. Each event triggered a message output in the subscriber's terminal showing the event data was successfully received and handled.
+
+This demonstrates the flow of data in an event-driven architecture where the publisher emits events, RabbitMQ acts as the intermediary, and the subscriber processes those events.
+
+### 📸 Screenshot of Terminals and RabbitMQ
+
+![Sending and Receiving Events](media/events_terminal_screenshot.png)
+![RabbitMQ Running](media/events_rabbitmq_screenshot.png)
