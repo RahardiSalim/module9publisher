@@ -44,4 +44,4 @@ This visual feedback confirms the interaction of the publisher with RabbitMQ and
 
 ### 📈 Screenshot of Monitoring Chart
 
-![RabbitMQ Monitoring Spike](monitoring_spike.png)
+![RabbitMQ Monitoring Spike](media/monitoring_spike.png)
