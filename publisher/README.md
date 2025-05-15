@@ -30,3 +30,18 @@ This demonstrates the flow of data in an event-driven architecture where the pub
 
 ![Sending and Receiving Events](media/events_terminal_screenshot.png)
 ![RabbitMQ Running](media/events_rabbitmq_screenshot.png)
+
+
+## Monitoring Chart Based on Publisher
+
+When observing the RabbitMQ Management UI, you may notice a sudden spike in the "Messages Published" and "Messages Ready" charts. These spikes represent bursts of traffic and message activity occurring within the broker.
+
+The spike appears when the publisher application is executed. Each time I run `cargo run` in the publisher directory, it sends five messages (events) to the RabbitMQ queue named `user_created`. These messages are added almost instantly to the message queue, which causes the brief spike in the chart as RabbitMQ registers multiple incoming messages in a short time.
+
+As soon as the subscriber consumes those events, the chart may drop back down, showing that messages have been acknowledged and removed from the queue. Repeatedly running the publisher causes multiple spikes, visually showing the message flow from publisher to broker and on to the subscriber.
+
+This visual feedback confirms the interaction of the publisher with RabbitMQ and demonstrates how message-based systems reflect real-time activity.
+
+### 📈 Screenshot of Monitoring Chart
+
+![RabbitMQ Monitoring Spike](monitoring_spike.png)
